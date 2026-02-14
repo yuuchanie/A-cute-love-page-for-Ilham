@@ -2,165 +2,197 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Be My Valentine</title>
+<title>AYOOKK KITA NGE-DATE</title>
 
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Arial', sans-serif;
-  overflow: hidden;
+body{
+margin:0;
+height:100vh;
+background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial,sans-serif;
+overflow:hidden;
 }
 
-.container {
-  text-align: center;
-  background: rgba(255,255,255,0.9);
-  padding: 45px;
-  border-radius: 25px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.25);
-  max-width: 420px;
+.container{
+text-align:center;
+background:rgba(255,255,255,0.95);
+padding:45px;
+border-radius:25px;
+box-shadow:0 0 30px rgba(0,0,0,0.25);
+max-width:420px;
 }
 
-h1 {
-  color: #ff6fae;
-  margin-bottom: 10px;
+h1{color:#ff6fae;}
+h2{color:#6c8cff;}
+
+button{
+padding:14px 28px;
+font-size:18px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+margin:10px;
+transition:0.2s;
 }
 
-h2 {
-  color: #6c8cff;
+button:hover{transform:scale(1.05);}
+
+#yes{
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+color:white;
 }
 
-button {
-  padding: 14px 28px;
-  font-size: 18px;
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  margin: 10px;
-  transition: transform 0.2s ease;
+#no{
+background:linear-gradient(135deg,#b5d0ff,#d6e6ff);
+position:absolute;
 }
 
-button:hover {
-  transform: scale(1.05);
+/* hearts */
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:20px;
+animation:floatUp 6s linear infinite;
 }
 
-#yes {
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  color: #fff;
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
 }
 
-#no {
-  background: linear-gradient(135deg, #b5d0ff, #d6e6ff);
-  position: absolute;
+/* cat */
+.cat{
+font-size:60px;
+animation:catBounce 1s infinite alternate;
 }
 
-/* floating hearts */
-.heart {
-  position: fixed;
-  bottom: -10px;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
+@keyframes catBounce{
+from{transform:translateY(0);}
+to{transform:translateY(-15px);}
 }
 
-@keyframes floatUp {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
+/* confetti */
+.confetti{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
+input{
+padding:10px;
+border-radius:10px;
+border:1px solid #ccc;
+margin:5px;
+width:80%;
 }
 </style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
 <audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_8f7a3f78cc.mp3?filename=perfect-piano-cover-121684.mp3" type="audio/mpeg">
+<source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_8f7a3f78cc.mp3?filename=perfect-piano-cover-121684.mp3">
 </audio>
 
-<div class="container">
-  <h1>ddy ❤️</h1>
-  <h2>Mau jadi Valentine aku?</h2>
-  <button id="yes">YA</button>
-  <button id="no">TIDAK</button>
+<div class="container" id="box">
+<div class="cat">🐱</div>
+<h1>ddy ❤️</h1>
+<h2 id="question">AYOOKK KITA NGE-DATE</h2>
+<button id="yes">YA</button>
+<button id="no">TIDAK</button>
 </div>
 
 <script>
-const noBtn = document.getElementById("no");
-const yesBtn = document.getElementById("yes");
+const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
+const question=document.getElementById("question");
 
-// tombol kabur
-noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * (window.innerWidth - 120);
-  const y = Math.random() * (window.innerHeight - 60);
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+let noCount=0;
+
+// NO logic
+noBtn.addEventListener("click",()=>{
+noCount++;
+if(noCount==1) question.innerText="Yakin klik NO?";
+else if(noCount==2) question.innerText="Nanti yully marah loh 😠";
+else if(noCount==3) question.innerText="Tidak mau nge-date?";
 });
 
-// klik YA
-yesBtn.addEventListener("click", () => {
-  document.body.innerHTML = `
-  <div style="
-    background: rgba(255,255,255,0.95);
-    padding: 45px;
-    border-radius: 25px;
-    text-align: center;
-    max-width: 500px;
-    margin: auto;
-    margin-top: 12vh;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-  ">
-    <h1 style="color:#ff6fae;">Yeayyy 💖</h1>
-    <p style="font-size:18px;color:#444;">
-      Hai suamiku paling ganteng sejagat raya, ddy ❤️  
-      <br><br>
-      Makasih ya udah jadi tempat pulang aku,  
-      tempat aku manja,  
-      tempat aku cerita,  
-      dan tempat aku minta jajan 😆  
-      <br><br>
-      Kamu itu kadang nyebelin,  
-      kadang ngeselin,  
-      tapi selalu aku cintain 🤍  
-      <br><br>
-      Kalau disuruh milih lagi,  
-      aku tetap pilih kamu.  
-      Seribu kali pun milih,  
-      jawabannya tetap: kamu.  
-      <br><br>
-      Kamu milik aku.  
-      Aku milik kamu.  
-      Kita milik Indomie kalau lagi lapar 🤝🍜  
-      <br><br>
-      Love you today, tomorrow, and forever ♾️  
-      <br>
-      Dari istrimu yang paling bucin sedunia 💕
-    </p>
-  </div>
-  `;
+// mulai kabur
+noBtn.addEventListener("mouseover",()=>{
+if(noCount>=3){
+noBtn.style.left=Math.random()*(window.innerWidth-120)+"px";
+noBtn.style.top=Math.random()*(window.innerHeight-60)+"px";
+}
 });
 
-// generate hearts
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = Math.random() > 0.5 ? "💖" : "💙";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 20 + 15 + "px";
-  document.body.appendChild(heart);
+// YES
+yesBtn.addEventListener("click",()=>{
+document.body.innerHTML=`
+<div class="container">
+<div class="cat">🐱💖</div>
+<h1>Yeayyy 💕</h1>
+<p>
+Hai suamiku paling ganteng sejagat raya, ddy ❤️<br><br>
+Makasih ya udah jadi rumah aku, tempat aku manja,
+tempat aku cerita, dan tempat aku minta jajan 😆<br><br>
+Aku cinta kamu setiap hari, tanpa expired 🤍
+</p>
 
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
-}, 300);
+<h3>Nge-date dimana? 🥰</h3>
+<input id="place" placeholder="Tempat date..."><br>
+<input id="date" placeholder="Tanggal..."><br>
+<button id="done">DONE</button>
+</div>
+`;
+
+document.getElementById("done").addEventListener("click",()=>{
+const place=document.getElementById("place").value;
+const date=document.getElementById("date").value;
+
+// CONFETTI
+for(let i=0;i<80;i++){
+const conf=document.createElement("div");
+conf.className="confetti";
+conf.innerHTML=["🎉","🎊","💖","💙"][Math.floor(Math.random()*4)];
+conf.style.left=Math.random()*100+"vw";
+conf.style.fontSize=Math.random()*20+15+"px";
+document.body.appendChild(conf);
+setTimeout(()=>conf.remove(),3000);
+}
+
+document.body.innerHTML=`
+<div class="container">
+<div class="cat">🐱🎉</div>
+<h1>YEAYYY 💖</h1>
+<p>
+Yeayyy, kita nge-date ya ❤️<br>
+Di <b>${place}</b> tanggal <b>${date}</b><br><br>
+Jangan lupa mandii 😆🚿<br><br>
+Big love from your wife yullyra 💕
+</p>
+</div>
+`;
+});
+});
+
+// hearts
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML=Math.random()>0.5?"💖":"💙";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=Math.random()*20+15+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},300);
 </script>
 
 </body>
